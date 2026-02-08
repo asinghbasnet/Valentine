@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Time-Gate 💝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [ENHANCED BEAUTIFUL STYLING] */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 25%, #FFC0CB 50%, #FF1493 75%, #FF69B4 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container.waiting {
+            background: linear-gradient(135deg, #434343 0%, #000000 100%);
+        }
+
+        .container.farewell {
+            background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+        }
+
+        /* Enhanced Heart Particles */
+        .heart-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.4);
+            animation: float-up linear infinite;
+            font-size: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 64, 0.3);
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Beautiful Card Design */
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 32px;
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 50px 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card.animate-in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Enhanced Welcome Page */
+        .welcome-gift {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 64, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .welcome-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FF1493;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #FF1493, #FF69B4, #FFB6C1, #FF1493);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .welcome-subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 40px;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .decorative-hearts {
+            font-size: 28px;
+            color: #FF0040;
+            margin: 30px 0;
+            letter-spacing: 15px;
+            text-shadow: 0 0 15px rgba(255, 0, 64, 0.4);
+            animation: heartGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes heartGlow {
+            0% { text-shadow: 0 0 15px rgba(255, 0, 64, 0.4); }
+            100% { text-shadow: 0 0 25px rgba(255, 0, 64, 0.7), 0 0 35px rgba(255, 0, 64, 0.5); }
+        }
+
+        /* Enhanced Open Button */
+        .open-button {
+            background: linear-gradient(135deg, #FF0040 0%, #FF4081 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(255, 0, 64, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .open-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 64, 0.6);
+        }
+
+        .open-button:active {
+            transform: translateY(-1px);
+        }
+
+        .open-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .open-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .open-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Enhanced Calendar */
+        .calendar-title {
+            font-size: 42px;
+            font-weight: bold;
+            color: #FF1493;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calendar-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 64, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .day-card:hover::before {
+            left: 100%;
+        }
+
+        .day-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: rgba(200, 200, 200, 0.8);
+        }
+
+        .day-card.available:hover {
+            border-color: #FF0040;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 0, 64, 0.3);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .day-card.today {
+            border-color: #FF0040;
+            box-shadow: 0 0 25px rgba(255, 0, 64, 0.4);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.1));
+        }
+
+        .day-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .day-card.available:hover .day-icon {
+            transform: scale(1.2);
+        }
+
+        .day-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .day-date {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Enhanced Day View */
+        .day-view-card {
+            position: relative;
+            overflow: visible;
+        }
+
+        .day-header-decoration {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .floating-hearts {
+            font-size: 24px;
+            animation: floatHearts 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+        }
+
+        @keyframes floatHearts {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(-5deg); }
+        }
+
+        .day-content-wrapper {
+            position: relative;
+            z-index: 5;
+        }
+
+        .day-date-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            color: #FF0040;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 0, 64, 0.2);
+        }
+
+        .day-signature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0 20px;
+            color: #666;
+            font-style: italic;
+            font-size: 16px;
+        }
+
+        .signature-line {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FF0040, transparent);
+            border-radius: 1px;
+        }
+
+        .signature-heart {
+            color: #FF0040;
+            font-size: 18px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .day-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .day-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        .day-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FF0040;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .day-message {
+            font-size: 20px;
+            line-height: 1.7;
+            color: #333;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 25px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            border-left: 4px solid #FF0040;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .day-message::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 60px;
+            color: rgba(255, 0, 64, 0.2);
+            font-family: 'Georgia', serif;
+        }
+
+        .day-message::after {
+            content: '"';
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            font-size: 60px;
+            color: rgba(255, 0, 64, 0.2);
+            font-family: 'Georgia', serif;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #FF0040 0%, #FF4081 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 0, 64, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 0, 64, 0.4);
+        }
+
+        /* Enhanced Typography */
+        .title {
+            font-size: 38px;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Additional Decorative Elements */
+        .sparkle-decoration {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: rgba(255, 215, 0, 0.6);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .corner-decoration {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+            color: rgba(255, 0, 64, 0.3);
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-3px) rotate(2deg); }
+            66% { transform: translateY(3px) rotate(-2deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const valentineSchedule = {
+            7: { name: "Rose Day", icon: "🌹", message: "Like a rose that blooms with grace, you bring beauty to every moment.", image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=800" },
+            8: { name: "Propose Day", icon: "💍", message: "Every day, I choose you. Let's keep writing our story together.", image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800" },
+            9: { name: "Chocolate Day", icon: "🍫", message: "Life with you is sweeter than the finest chocolate.", image: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=800" },
+            10: { name: "Teddy Day", icon: "🧸", message: "You're my comfort, my warmth, my safe place.", image: "https://images.unsplash.com/photo-1530325553241-4f6e7690cf36?w=800" },
+            11: { name: "Promise Day", icon: "🤝", message: "I promise to love you in the quiet moments and the loud ones.", image: "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?w=800" },
+            12: { name: "Hug Day", icon: "🤗", message: "In your arms, I've found my home. Your hugs heal everything.", image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800" },
+            13: { name: "Kiss Day", icon: "💋", message: "Your lips speak a language only my heart understands.", image: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800" },
+            14: { name: "Valentine's Day", icon: "❤️", message: "You're my Valentine today and every day. I love you.", image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800" }
+        };
+
+        function createParticles() {
+            let p = '';
+            for(let i=0; i<15; i++) {
+                p += `<div class="heart-particle" style="left:${Math.random()*100}%; animation-delay:${Math.random()*5}s; font-size:${10+Math.random()*20}px">♥</div>`;
+            }
+            return `<div class="heart-particles">${p}</div>`;
+        }
+
+        function initApp() {
+            const now = new Date();
+            const month = now.getMonth() + 1;
+            const date = now.getDate();
+
+            if (month < 2 || (month === 2 && date < 7)) {
+                renderContent(renderWaiting());
+            } else if (month === 2 && date <= 14) {
+                renderContent(renderWelcome());
+            } else {
+                renderContent(renderFarewell());
+            }
+        }
+
+        function renderContent(html) {
+            document.getElementById('app').innerHTML = html;
+            // Add animation after content loads
+            setTimeout(() => {
+                const card = document.querySelector('.card');
+                if (card) {
+                    card.classList.add('animate-in');
+                }
+            }, 100);
+        }
+
+        function renderWaiting() {
+            return `<div class="container waiting">${createParticles()}<div class="card"><h1 class="title">The Magic Begins Soon</h1><p class="message">Come back on February 7th! 🔒</p></div></div>`;
+        }
+
+        function renderWelcome() {
+            return `<div class="container">${createParticles()}<div class="card">
+                <div class="welcome-gift">🎁</div>
+                <h1 class="welcome-title">Happy Valentine's Week!</h1>
+                <p class="welcome-subtitle">A Special Gift Just For You</p>
+
+                <div class="decorative-hearts">♥ ♥ ♥</div>
+
+                <div class="welcome-message">
+                    <p style="margin-bottom: 20px;">My love, this February is unlike any other. I've prepared something special for you—a journey through the days leading up to Valentine's Day, each one filled with words from my heart.</p>
+                    <p style="margin-bottom: 20px;">From February 7th to 14th, every day will unlock a new message, a new memory, a new reason why I'm grateful you're mine. This is my Valentine's gift to you—not just one moment, but an entire week of celebrating us.</p>
+                    <p>Are you ready to begin this journey? Click below to open your first surprise...</p>
+                </div>
+
+                <div class="decorative-hearts">♥ ♥ ♥</div>
+
+                <button class="open-button" onclick="renderCalendar()">
+                    <span>Open Your Valentine's Week 💝</span>
+                </button>
+            </div></div>`;
+        }
+
+        function renderCalendar() {
+            const today = new Date().getDate();
+            let grid = '';
+            for (let d = 7; d <= 14; d++) {
+                const isLocked = d > today;
+                const isToday = d === today;
+                const data = valentineSchedule[d];
+                grid += `
+                    <div class="day-card ${isLocked ? 'locked' : 'available'} ${isToday ? 'today' : ''}" onclick="${isLocked ? '' : `showDay(${d})`}">
+                        <div class="day-icon">${isLocked ? '🔒' : data.icon}</div>
+                        <div class="day-name">${data.name}</div>
+                        <div class="day-date">Feb ${d}</div>
+                    </div>`;
+            }
+            renderContent(`<div class="container">${createParticles()}<div class="card">
+                <h1 class="calendar-title">Valentine's Week Calendar</h1>
+                <p class="calendar-subtitle">February 7-14, 2026</p>
+                <div class="calendar-grid">${grid}</div>
+                <p style="margin-top: 30px; color: #666; font-style: italic;">Click on available days to read your messages! 💕</p>
+            </div></div>`);
+        }
+
+        function showDay(d) {
+            const data = valentineSchedule[d];
+            const dayColors = {
+                7: 'linear-gradient(135deg, #FF69B4 0%, #FFB6C1 25%, #FFC0CB 50%, #FF1493 75%, #FF69B4 100%)',
+                8: 'linear-gradient(135deg, #C71585 0%, #FF1493 25%, #FF69B4 50%, #FFB6C1 75%, #C71585 100%)',
+                9: 'linear-gradient(135deg, #8B4513 0%, #D2691E 25%, #CD853F 50%, #F4A460 75%, #8B4513 100%)',
+                10: 'linear-gradient(135deg, #8B4513 0%, #D2691E 25%, #CD853F 50%, #F4A460 75%, #8B4513 100%)',
+                11: 'linear-gradient(135deg, #4B0082 0%, #8B008B 25%, #9932CC 50%, #BA55D3 75%, #4B0082 100%)',
+                12: 'linear-gradient(135deg, #FF6B9D 0%, #FFA5C7 25%, #FFB6C1 50%, #FFC0CB 75%, #FF6B9D 100%)',
+                13: 'linear-gradient(135deg, #E91E63 0%, #F48FB1 25%, #F8BBD9 50%, #FCE4EC 75%, #E91E63 100%)',
+                14: 'linear-gradient(135deg, #FF0040 0%, #FF4081 25%, #FF6B9D 50%, #FFA5C7 75%, #FF0040 100%)'
+            };
+
+            renderContent(`
+                <div class="container" style="background: ${dayColors[d] || 'linear-gradient(135deg, #FF69B4 0%, #FFB6C1 100%)'}; background-size: 400% 400%; animation: gradientShift 8s ease-in-out infinite;">
+                    ${createParticles()}
+                    <div class="card day-view-card">
+                        <div class="sparkle-decoration">✨</div>
+                        <div class="corner-decoration">💕</div>
+                        <div class="day-header-decoration">
+                            <div class="floating-hearts">💖✨💕</div>
+                        </div>
+                        <img src="${data.image}" class="day-image" alt="${data.name}">
+                        <div class="day-content-wrapper">
+                            <h1 class="day-title">${data.name}</h1>
+                            <div class="day-date-badge">February ${d}, 2026</div>
+                            <p class="day-message">"${data.message}"</p>
+                            <div class="day-signature">
+                                <div class="signature-line"></div>
+                                <span>With all my love</span>
+                                <span class="signature-heart">♥</span>
+                                <div class="signature-line"></div>
+                            </div>
+                        </div>
+                        <button class="back-button" onclick="renderCalendar()">← Back to Calendar</button>
+                    </div>
+                </div>`);
+        }
+
+        function renderFarewell() {
+            return `<div class="container farewell">${createParticles()}<div class="card"><h1 class="title">Until Next Year</h1><p class="message">Valentine's may be over, but my love for you is forever. ❤️</p></div></div>`;
+        }
+
+        initApp();
+    </script>
+</body>
+</html>
